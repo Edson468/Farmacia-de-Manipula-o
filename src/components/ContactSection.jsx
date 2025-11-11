@@ -1,16 +1,25 @@
+// Importa os ícones de telefone, WhatsApp e e-mail da biblioteca react-icons.
 import { FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+// Importa o hook useState do React para gerenciar o estado do arquivo selecionado.
 import { useState } from 'react';
 
+// Define o componente ContactSection, que renderiza a seção de contato da página.
 export default function ContactSection() {
+  // Define constantes para o número de WhatsApp e o e-mail de contato.
   const WHATSAPP_NUMBER = '5585999999999';
   const EMAIL = 'contato@vidaverde.com.br';
+  // Cria um estado para armazenar a URL de pré-visualização do arquivo de imagem selecionado.
   const [selectedFile, setSelectedFile] = useState(null);
 
+  // Função para lidar com a mudança de arquivo no input de upload.
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    // Verifica se o arquivo é uma imagem.
     if (file && file.type.startsWith('image/')) {
+      // Se for uma imagem, cria uma URL para pré-visualização e atualiza o estado.
       setSelectedFile(URL.createObjectURL(file));
     } else {
+      // Caso contrário, exibe um alerta e limpa o input.
       alert('Por favor, selecione uma imagem (JPG, PNG, etc.).');
       e.target.value = '';
     }
@@ -18,6 +27,7 @@ export default function ContactSection() {
 
   return (
     <section id="contato" className="py-16 bg-white">
+      {/* Container principal da seção de contato. */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
@@ -27,7 +37,7 @@ export default function ContactSection() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 max-w-5xl mx-auto">
-          {/* Formulário com campos na ordem: texto → upload */}
+          {/* Bloco do formulário de contato. */}
           <div className="flex-1">
             <form className="space-y-4">
               <input
@@ -41,14 +51,14 @@ export default function ContactSection() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               />
 
-              {/* Campo de mensagem (TEXTO) */}
+              {/* Campo de área de texto para a mensagem do usuário. */}
               <textarea
                 rows="3"
                 placeholder="Sua mensagem (ex: dúvidas, observações...)"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               ></textarea>
 
-              {/* Upload de imagem (ANEXO) — AGORA ABAIXO DO TEXTO */}
+              {/* Bloco para upload de anexo (receita). */}
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
                 <label className="block text-gray-700 mb-2 font-medium">
                   📎 Anexar receita (opcional)
@@ -66,6 +76,7 @@ export default function ContactSection() {
                 >
                   Escolher imagem
                 </label>
+                {/* Exibe a pré-visualização da imagem se um arquivo for selecionado. */}
                 {selectedFile && (
                   <div className="mt-3">
                     <p className="text-sm text-gray-600 mb-2">Pré-visualização:</p>
@@ -90,11 +101,11 @@ export default function ContactSection() {
             </form>
           </div>
 
-          {/* Informações de Contato + Mapa */}
+          {/* Bloco de informações de contato e mapa. */}
           <div className="flex-1">
             <div className="space-y-8 text-gray-700">
-              {/* Mapa */}
               <div>
+                {/* Título e iframe do Google Maps para a localização. */}
                 <h3 className="font-bold text-lg text-gray-900 mb-3">Localização</h3>
                 <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                   <iframe
@@ -108,11 +119,10 @@ export default function ContactSection() {
                     title="Localização da Farmácia"
                   ></iframe>
                 </div>
-                {/*<p className="mt-3 text-sm text-gray-600">Fortaleza - CE</p>*/}
               </div>
 
-              {/* Contatos com ícones */}
               <div>
+                {/* Título e lista de contatos (telefone, WhatsApp, e-mail). */}
                 <h3 className="font-bold text-lg text-gray-900 mb-4">Fale Conosco</h3>
                 <div className="space-y-4">
                   <a

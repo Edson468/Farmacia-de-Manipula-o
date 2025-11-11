@@ -1,20 +1,24 @@
+// Importa o hook do carrossel Embla e hooks do React (useEffect, useCallback, useState).
 import useEmblaCarousel from 'embla-carousel-react';
 import { useEffect, useCallback, useState } from 'react';
 
+// Array com as URLs das imagens que serão exibidas no carrossel.
 const slides = [
-  'https://plus.unsplash.com/premium_photo-1682141246821-57da8410a1ec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmFybWFjaWElMjAlMjBNYW5pcHVsYWNhbyUyMGxhYm9yYXRvcmlvfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900', // Laboratório limpo
-  ' https://media.istockphoto.com/id/1344251439/pt/foto/young-pharmacist-checking-the-shelves-with-a-digital-tablet-at-the-pharmacy.webp?a=1&b=1&s=612x612&w=0&k=20&c=TIBLQJZNdjQ-PwQ4hoiAQWGTqTwiCXiog_C6uw5M-1k=', // Farmacêutico
-  ' https://media.istockphoto.com/id/1379415199/pt/foto/scientist-group-working-with-many-lab-equipment-for-research-at-laboratory.webp?a=1&b=1&s=612x612&w=0&k=20&c=3b1C9O5o_YxddtI5HIg_9JjxwbQTq8N_k4q_svcijPU=', // Manipulação
+  'https://plus.unsplash.com/premium_photo-1682141246821-57da8410a1ec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8RmFybWFjaWElMjAlMjBNYW5pcHVsYWNhbyUyMGxhYm9yYXRvcmlvfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900',
+  ' https://media.istockphoto.com/id/1344251439/pt/foto/young-pharmacist-checking-the-shelves-with-a-digital-tablet-at-the-pharmacy.webp?a=1&b=1&s=612x612&w=0&k=20&c=TIBLQJZNdjQ-PwQ4hoiAQWGTqTwiCXiog_C6uw5M-1k=',
+  ' https://media.istockphoto.com/id/1379415199/pt/foto/scientist-group-working-with-many-lab-equipment-for-research-at-laboratory.webp?a=1&b=1&s=612x612&w=0&k=20&c=3b1C9O5o_YxddtI5HIg_9JjxwbQTq8N_k4q_svcijPU=',
 ];
 
 
 export default function ImageCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 50 }); // 5.0s de duração suave
+  // Inicializa o carrossel com opções de loop e duração da transição.
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 50 });
+  // Estados para controlar o slide selecionado, a visibilidade das setas e o autoplay.
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showArrows, setShowArrows] = useState(false);
   const [autoplayActive, setAutoplayActive] = useState(true);
 
-  // Autoplay com pausa em interação
+  // Efeito para pausar o autoplay quando o usuário interage com o carrossel.
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -27,7 +31,7 @@ export default function ImageCarousel() {
 
     emblaApi.on('pointerDown', pause);
     emblaApi.on('pointerUp', play);
-    emblaApi.on('select', play); // retoma após navegação manual
+    emblaApi.on('select', play); // Retoma o autoplay após navegação manual.
 
     return () => {
       emblaApi.off('pointerDown', pause);
@@ -36,23 +40,24 @@ export default function ImageCarousel() {
     };
   }, [emblaApi]);
 
-  // Autoplay em si
+  // Efeito que implementa a funcionalidade de autoplay.
   useEffect(() => {
     if (!emblaApi || !autoplayActive) return;
 
     const interval = setInterval(() => {
       emblaApi.scrollNext();
-    }, 6000); // 6 segundos entre slides
+    }, 6000); // Muda de slide a cada 6 segundos.
 
     return () => clearInterval(interval);
   }, [emblaApi, autoplayActive]);
 
-  // Atualiza índice selecionado
+  // Função para atualizar o estado do índice do slide selecionado.
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
+  // Efeito para registrar e limpar o evento 'select' que atualiza o índice.
   useEffect(() => {
     if (!emblaApi) return;
     onSelect();
@@ -60,25 +65,29 @@ export default function ImageCarousel() {
     return () => emblaApi.off('select', onSelect);
   }, [emblaApi, onSelect]);
 
+  // Função para navegar para o slide anterior e gerenciar o autoplay.
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
       emblaApi.scrollPrev();
-      setAutoplayActive(false); // para após navegação manual
-      setTimeout(() => setAutoplayActive(true), 8000); // retoma após 8s
+      setAutoplayActive(false); // Pausa o autoplay na navegação manual.
+      setTimeout(() => setAutoplayActive(true), 8000); // Retoma após 8 segundos.
     }
   }, [emblaApi]);
 
+  // Função para navegar para o próximo slide e gerenciar o autoplay.
   const scrollNext = useCallback(() => {
     if (emblaApi) {
       emblaApi.scrollNext();
       setAutoplayActive(false);
-      setTimeout(() => setAutoplayActive(true), 8000);
+      setTimeout(() => setAutoplayActive(true), 8000); // Retoma após 8 segundos.
     }
   }, [emblaApi]);
 
   return (
     <section id="sobre" className="py-16 bg-gray-50">
+      {/* Container da seção "Sobre Nós". */}
       <div className="container mx-auto px-4">
+        {/* Bloco de texto introdutório da seção. */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900">Sobre Nós</h2>
           <p className="text-gray-700 mt-4 max-w-3xl mx-auto text-lg">
@@ -88,6 +97,7 @@ export default function ImageCarousel() {
           </p>
         </div>
 
+        {/* Container do carrossel de imagens. */}
         <div className="max-w-4xl mx-auto relative">
           <div
             className="rounded-2xl overflow-hidden shadow-lg relative"
@@ -95,6 +105,7 @@ export default function ImageCarousel() {
             onMouseEnter={() => setShowArrows(true)}
             onMouseLeave={() => setShowArrows(false)}
           >
+            {/* Viewport do carrossel que contém os slides. */}
             <div className="flex">
               {slides.map((img, index) => (
                 <div key={index} className="flex-[0_0_100%] min-w-0">
@@ -107,7 +118,7 @@ export default function ImageCarousel() {
               ))}
             </div>
 
-            {/* Setas com transição suave */}
+            {/* Botão para navegar para o slide anterior, com transição suave. */}
             <button
               onClick={scrollPrev}
               className={`absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 rounded-full shadow-md z-10 transition-all duration-300 ease-in-out ${
@@ -119,6 +130,7 @@ export default function ImageCarousel() {
                 <path fillRule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
               </svg>
             </button>
+            {/* Botão para navegar para o próximo slide, com transição suave. */}
             <button
               onClick={scrollNext}
               className={`absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 rounded-full shadow-md z-10 transition-all duration-300 ease-in-out ${
@@ -132,7 +144,7 @@ export default function ImageCarousel() {
             </button>
           </div>
 
-          {/* Dots */}
+          {/* Indicadores de navegação (dots) para o carrossel. */}
           <div className="flex justify-center mt-5 space-x-2">
             {slides.map((_, index) => (
               <button

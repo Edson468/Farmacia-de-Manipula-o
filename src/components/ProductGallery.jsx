@@ -1,4 +1,6 @@
+// Define o componente ProductGallery, que exibe uma galeria de produtos.
 export default function ProductGallery() {
+  // Array de objetos contendo os dados dos produtos a serem exibidos.
   const products = [
     {
       id: 1,
@@ -29,21 +31,24 @@ export default function ProductGallery() {
 
   return (
     <section id="produtos" className="py-16 bg-white">
+      {/* Container principal da seção de produtos. */}
       <div className="container mx-auto px-4">
+        {/* Cabeçalho da seção com título e descrição. */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossos Produtos</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Trabalhamos com as mais rigorosas normas de manipulação para garantir eficácia e segurança.
           </p>
         </div>
-
+        {/* Grid para exibir os cartões de produtos. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
+            // Cartão individual de produto com efeito de transição.
             <div
               key={product.id}
               className="bg-primary-50 rounded-xl p-6 text-center transition-transform hover:scale-105 hover:shadow-md flex flex-col items-center"
             >
-              {/* Imagem com bordas arredondadas visíveis */}
+              {/* Bloco da imagem do produto. */}
               <div className="mb-5">
                 <img
                   src={product.img}
@@ -51,7 +56,9 @@ export default function ProductGallery() {
                   className="w-32 h-32 object-cover rounded-xl"
                 />
               </div>
+              {/* Nome do produto. */}
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
+              {/* Descrição do produto. */}
               <p className="text-gray-600 text-sm">{product.desc}</p>
             </div>
           ))}
