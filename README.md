@@ -1,7 +1,5 @@
 # 🌿 Farmácia Vida Verde – Landing Page
 
-![Landing Page Preview](https://farmacia-de-manipula-o.vercel.app/) <!-- Substitua por screenshot real depois -->
-
 Uma **landing page moderna e responsiva** para **farmácias de manipulação**, desenvolvida com foco em **experiência do usuário, design limpo e conversão**. Ideal para clínicas que desejam apresentar seus serviços, produtos personalizados e facilitar o contato com os clientes.
 
 > Fundada em 1990, a Farmácia Vida Verde é referência em manipulação magistral em Fortaleza — e esta página traduz sua tradição, cuidado e excelência farmacêutica em uma interface digital elegante e funcional.
