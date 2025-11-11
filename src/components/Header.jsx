@@ -14,9 +14,16 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-primary-600 font-bold text-xl">
-          Farmácia Vida Verde
+        {/* Logo + Nome */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/android-chrome-192x192.png"
+            alt="Logo Farmácia Vida Verde"
+            className="w-10 h-10 rounded-md"
+          />
+          <div className="text-primary-600 font-bold text-xl">
+            Farmácia Vida Verde
+          </div>
         </div>
 
         {/* Desktop Menu */}
@@ -25,9 +32,11 @@ export default function Header() {
             <a
               key={link.name}
               href={link.href}
-              className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
+              className="relative font-medium text-gray-700 hover:text-primary-600 transition-colors group"
             >
               {link.name}
+              {/* Linha animada */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
