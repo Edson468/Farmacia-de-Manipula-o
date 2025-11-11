@@ -1,16 +1,91 @@
-# React + Vite
+# 🌿 Farmácia Vida Verde – Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Landing Page Preview](https://farmacia-de-manipula-o.vercel.app/) <!-- Substitua por screenshot real depois -->
 
-Currently, two official plugins are available:
+Uma **landing page moderna e responsiva** para **farmácias de manipulação**, desenvolvida com foco em **experiência do usuário, design limpo e conversão**. Ideal para clínicas que desejam apresentar seus serviços, produtos personalizados e facilitar o contato com os clientes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> Fundada em 1990, a Farmácia Vida Verde é referência em manipulação magistral em Fortaleza — e esta página traduz sua tradição, cuidado e excelência farmacêutica em uma interface digital elegante e funcional.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Funcionalidades
 
-## Expanding the ESLint configuration
+- **Design responsivo** — perfeito para mobile, tablet e desktop  
+- **Galeria de produtos** com imagens ilustrativas e descrições claras  
+- **Carrossel automático** com imagens do laboratório e equipe  
+- **Formulário de contato com suporte a upload de receitas** (fotos)  
+- **Integração com WhatsApp e e-mail** (links clicáveis)  
+- **Mapa embutido** com localização em Fortaleza - CE  
+- **Botão flutuante do WhatsApp** sempre visível com micro-interação  
+- **Animações suaves** e transições refinadas (hover, scroll, etc.)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **[React](https://react.dev/)** – Biblioteca para interfaces dinâmicas  
+- **[Vite](https://vitejs.dev/)** – Bundler ultrarrápido para desenvolvimento  
+- **[Tailwind CSS](https://tailwindcss.com/)** – Framework de estilização utilitário  
+- **[Embla Carousel](https://www.embla-carousel.com/)** – Carrossel leve e performático  
+- **[React Icons](https://react-icons.github.io/react-icons/)** – Ícones escaláveis e consistentes  
+
+---
+
+## 🚀 Como Executar Localmente
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/Farmacia-de-Manipulacao.git
+   cd Farmacia-de-Manipulacao
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse `http://localhost:5173` no seu navegador.
+
+> 💡 **Dica**: Substitua `seu-usuario` pelo seu nome de usuário do GitHub.
+
+---
+
+## 📸 Personalização
+
+### Adicionar sua logo
+1. Coloque seu arquivo de logo (`logo.png` ou `logo.svg`) na pasta **`public/`**  
+2. Atualize o caminho em `src/components/Header.jsx`:
+   ```jsx
+   <img src="/logo.png" alt="Logo Farmácia Vida Verde" />
+   ```
+
+### Atualizar dados de contato
+Edite as constantes em `src/components/ContactSection.jsx`:
+```js
+const WHATSAPP_NUMBER = '5585999999999';
+const EMAIL = 'contato@vidaverde.com.br';
+```
+
+### Substituir imagens do carrossel
+Atualize as URLs no array `slides` em `src/components/ImageCarousel.jsx`.
+
+---
+
+## 📄 Licença
+
+Este projeto é de código aberto sob a licença **MIT**.  
+Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 🙌 Créditos
+
+Desenvolvido por **[Edson Carvalho](https://github.com/Edson468)**  
+© 2025 Farmácia Vida Verde – Manipulação com Qualidade desde 1990
+
+---
